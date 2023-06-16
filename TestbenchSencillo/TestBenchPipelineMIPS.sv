@@ -47,7 +47,7 @@ module TestBenchMIPS ();
                 DUT.MemoryAccessMIPS.DataMemory.memory[11] = 32'h0000_000b;
                 //Load instruction memory
 			//Sorting algorithm
-		DUT.FetchMIPS.InstructionMemory.memory[0]   = 32'h2000_ffff;     //start:addi $0, $0, 65535
+		DUT.FetchMIPS.InstructionMemory.memory[0]   = 32'h2000_ffff;     //start:addi $0, $0, -1
                 DUT.FetchMIPS.InstructionMemory.memory[1]   = 32'h0000_0820;     //      add $1, $0, $0
                 DUT.FetchMIPS.InstructionMemory.memory[2]   = 32'h2002_0009;     //      addi $2, $0, 9
                 DUT.FetchMIPS.InstructionMemory.memory[3]   = 32'h8c23_0000;     //      lw $3, 0 ($1)
@@ -70,21 +70,22 @@ module TestBenchMIPS ();
                 DUT.MemoryAccessMIPS.DataMemory.memory[10] = 32'hc0ca_c01a;
                 //Load instruction memory
                         //Load algorithm
-		DUT.FetchMIPS.InstructionMemory.memory[0]   = 32'h8c00_0000;     //start:lw $0, 0($0)
-                DUT.FetchMIPS.InstructionMemory.memory[1]   = 32'h8c02_0008;     //      lw $2, 8($0)         
-                DUT.FetchMIPS.InstructionMemory.memory[2]   = 32'h8c04_0009;     //      lw $4, 9($0)
-                DUT.FetchMIPS.InstructionMemory.memory[3]   = 32'h0044_1020;     //      add $2, $2, $4
-                DUT.FetchMIPS.InstructionMemory.memory[4]   = 32'h0044_1824;     //      and $3, $2, $4
-                DUT.FetchMIPS.InstructionMemory.memory[5]   = 32'h8c05_000a;     //      lw $5, 10($0)
-                DUT.FetchMIPS.InstructionMemory.memory[6]   = 32'h00a0_3825;     //      or $7, $5, $0
-                DUT.FetchMIPS.InstructionMemory.memory[7]   = 32'h8c06_0002;     //      lw $6, 2($0)
-                DUT.FetchMIPS.InstructionMemory.memory[8]   = 32'h00e6_3825;     //      or $7, $7, $6
-                DUT.FetchMIPS.InstructionMemory.memory[9]   = 32'h0007_502a;     //      slt $10, $0, $7
-                DUT.FetchMIPS.InstructionMemory.memory[10]  = 32'h00e0_582a;     //      slt $11, $7, $0
-                DUT.FetchMIPS.InstructionMemory.memory[11]  = 32'h201f_ffff;     //      addi $31, $0, -1
-                DUT.FetchMIPS.InstructionMemory.memory[12]  = 32'h0800_000e;     //      j labelOne
-                DUT.FetchMIPS.InstructionMemory.memory[13]  = 32'h1000_ffff;     //labelTwo: beq $0, $0, labelTwo      
-                DUT.FetchMIPS.InstructionMemory.memory[14]  = 32'h0800_000e;     //labelOne: j labalOne      
+		DUT.FetchMIPS.InstructionMemory.memory[0]   = 32'h8c00_0000;     //start:       lw $0, 0($0)
+                DUT.FetchMIPS.InstructionMemory.memory[1]   = 32'h8c02_0008;     //             lw $2, 8($0)         
+                DUT.FetchMIPS.InstructionMemory.memory[2]   = 32'h8c04_0009;     //             lw $4, 9($0)
+                DUT.FetchMIPS.InstructionMemory.memory[3]   = 32'h0044_1020;     //             add $2, $2, $4
+                DUT.FetchMIPS.InstructionMemory.memory[4]   = 32'h0044_1824;     //             and $3, $2, $4
+                DUT.FetchMIPS.InstructionMemory.memory[5]   = 32'h8c05_000a;     //             lw $5, 10($0)
+                DUT.FetchMIPS.InstructionMemory.memory[6]   = 32'h00a0_3825;     //             or $7, $5, $0
+                DUT.FetchMIPS.InstructionMemory.memory[7]   = 32'h8c06_0002;     //             lw $6, 2($0)
+                DUT.FetchMIPS.InstructionMemory.memory[8]   = 32'h00e6_3825;     //             or $7, $7, $6
+                DUT.FetchMIPS.InstructionMemory.memory[9]   = 32'h0007_502a;     //             slt $10, $0, $7
+                DUT.FetchMIPS.InstructionMemory.memory[10]  = 32'h00e0_582a;     //             slt $11, $7, $0
+                DUT.FetchMIPS.InstructionMemory.memory[11]  = 32'h201f_ffff;     //             addi $31, $0, -1
+                DUT.FetchMIPS.InstructionMemory.memory[12]  = 32'h10e0_0102;     //             beq $7, $0, far
+                DUT.FetchMIPS.InstructionMemory.memory[13]  = 32'h0800_000f;     //             j labelOne
+                DUT.FetchMIPS.InstructionMemory.memory[14]  = 32'h1000_ffff;     //labelTwo:    beq $0, $0, labelTwo      
+                DUT.FetchMIPS.InstructionMemory.memory[15]  = 32'h0800_000e;     //labelOne:    j labalTwo
                 end
         end
 
